@@ -1,0 +1,41 @@
+<section class="index_commend classify">
+	<div class="index_header">
+		<p class="index_header_word">重磅推介<i class="commend_icon">热</i></p>							
+		<div class="sex_list">
+			<a class="sex active" href="/male">男</a>
+			<a class="sex" href="/female">女</a>
+		</div>
+	</div>
+	<div class="index_content">
+		<ul class="index_content_box">
+			<li class="clearfix content_box_list">
+				<a href="/book?id={{commend[0].fiction_id}}">
+					<div class="book_cover"  >
+						<img v-bind:src="commend[0].cover" />
+						<p class="book_state" v-if="commend[0].finish">完结</p>
+						<p class="book_state" v-else>未完结</p>
+					</div>
+					<div class="index_content_about">
+						<h4 class="book_title">{{commend[0].title}}</h4>
+						<span class="book_author">{{commend[0].authors}}</span>
+						<p class="book_content">{{commend[0].summary}}</p>
+						<ul class="content_tag_box">
+							<li class="book_tag" v-for="item in commend[0].tags">{{item}}</li>
+						</ul>
+					</div>
+				</a>
+			</li>
+			<li class="commend_book_list" v-for="item in commend" v-if="0<$index && $index<6">
+				<a href="/book?id={{item.fiction_id}}">
+					<div class="commend_infor">
+						<span class="commend_infor_number">{{'0'+$index}}</span>
+						<div class="commend_infor_des">
+							<p class="commend_infor_name">{{item.title}}</p>
+						</div>
+					</div>
+				</a>
+			</li>
+			
+		</ul>
+	</div>
+</section>

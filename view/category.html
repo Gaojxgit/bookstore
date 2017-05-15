@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+		<link href="../static/css/reset.css" rel="stylesheet" />
+		<title></title>
+		<style type="text/css">
+				.clearfix:before,
+			.clearfix:after{
+				content:'';
+				display: table;
+			}
+			.clearfix:after{
+				clear: both;
+			}
+			.common-header{
+				width:100%;
+				background:#ddd;
+				font:15px/45px a;
+				color:#666
+			}
+			.back-fowrd{
+				float: left;
+				width:44px;
+				height:44px;
+				background: url(../static/img/back.png) no-repeat center;
+				background-size: 12px;
+			}
+			.home{
+				float:right;
+				width:44px;
+				height:44px;
+				background:url(http://image.read.duokan.com/mfsv2/download/fdsc3/p01eZH42sBV7/QTS90E2ZVritaa.png) no-repeat center;
+				background-size: 16px;
+			}
+			section{
+				padding-left: 10px;
+			}
+			.category_title{
+				font: 16px/20px a;
+				padding: 10px 10px;
+				color: #666;
+				border-bottom:1px solid #eee ;
+			}
+			.category_item{
+				background: #eee;
+				padding-top: 16px;
+				padding-left:10px ;
+				padding-bottom: 16px;
+				background-repeat: no-repeat;
+				background-position: right bottom; 
+				background-size: 100%;
+			}
+			.category_list{
+				margin-bottom: 10px;
+			}
+			.category_item>p{
+				font-size:1rem ;
+				color: #888;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<header class="common-header">
+				<nav>
+					<a class="back-fowrd" href="/"></a>
+					<span class="common-content"><%=nav%></span>
+					<a class="home" href="/"></a>
+				</nav>
+			</header>
+			<section>
+				<h3 class="category_title">网文男频</h3>
+				<ul class="category_male">
+					<li class="category_list" v-for="male_item in male">
+						<div class="category_item" style="background-image: url({{male_item.new_image}})">
+							<h4>{{male_item.label}}</h4>
+							<p>{{male_item.fiction_count}}</p>
+						</div>
+					</li>
+				</ul>
+			</section>	
+			<section>
+				<h3 class="category_title">网文女频</h3>
+				<ul class="category_female">
+					<li class="category_list" v-for="female_item in male">
+						<div class="category_item" style="background-image: url({{female_item.new_image}});">
+							<h4>{{female_item.label}}</h4>
+							<p>{{female_item.fiction_count}}</p>
+						</div>
+					</li>
+				</ul>
+			</section>	
+		</div>
+		<script src="/static/vue.js"></script>
+		<script src="/static/zepto.js"></script>
+		<script src="/static/script/pages/category.js"></script>
+	</body>
+</html>

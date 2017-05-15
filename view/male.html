@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<link href="/static/css/reset.css" rel="stylesheet" />
+		<title></title>
+		<style type="text/css">
+				.clearfix:before,
+			.clearfix:after{
+				content:'';
+				display: table;
+			}
+			.clearfix:after{
+				clear: both;
+			}
+			.common-header{
+				width:100%;
+				background:#ddd;
+				font:15px/45px a;
+				color:#666
+			}
+			.back-fowrd{
+				float: left;
+				width:44px;
+				height:44px;
+				background: url(../static/img/back.png) no-repeat center;
+				background-size: 12px;
+			}
+			.home{
+				float:right;
+				width:44px;
+				height:44px;
+				background:url(http://image.read.duokan.com/mfsv2/download/fdsc3/p01eZH42sBV7/QTS90E2ZVritaa.png) no-repeat center;
+				background-size: 16px;
+			}
+			.common-box{
+				border-left: 6px solid #ffab18;
+				font:16px/43px a;
+				padding-left: 10px;
+				border-bottom: 1px solid #eee;
+				margin-bottom: 5px;
+			}
+			.book-list{
+				margin: 0px 1em;
+				border-bottom: 10px solis #eee;
+			}
+			.book-cover{
+				float: left;
+				width: 30%;
+			}
+			.book-cover img{
+				width:100%;
+			}
+			.book-describtion{
+				width: calc(70% - 10px);
+				padding-left: 10px;
+				display: inline-block;
+				box-sizing: content-box;
+			}
+			.book-name{
+				font-size: 1.6rem;
+				line-height: 2.2rem;
+				font-family: arial;
+				color: #111;
+				font-weight: 400;
+			}
+			.book-summary{
+				font-size: 1.4rem;
+				line-height: 1.8rem;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				overflow: hidden;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 3;
+				margin-bottom:1rem; 
+				color: #666;
+			}
+			.book-tag{
+				font-size: 12px;
+				display: inline-block;
+				line-height: 16px;
+				padding: 0px 2px ;
+				border: 1px solid #53AC7D;
+				border-radius: 2px;
+			}
+			.book-tag + .book-tag{
+				margin-left:4px ;
+			}
+			.book-list>li{
+				padding:1rem 0;
+				border-bottom:1px solid #ddd
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<% include include/common-header.html%>
+			<section>
+				<div class="common-box">
+					<p class="common-title">最受关注</p>
+				</div>
+				<ul class="book-list">
+					<li class="clearfix" v-for="item in focus">
+						<a href="/book?id={{item.fiction_id}}">	
+							<div class="book-cover">
+								<img v-bind:src="item.cover"/>
+							</div>
+							<div class="book-describtion">
+								<h3 class="book-name">{{item.title}}</h3>
+								<span class="author">{{item.authors}}</span>
+								<p class="book-summary">{{item.summary}}</p>
+								<ul class="book-tags" >
+									<li class="book-tag" v-for="tag in item.tags" v-if="$index<4">{{tag}}</li>
+								</ul>					
+							</div>
+						</a>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<div class="common-box">
+					<p class="common-title">主编推介</p>
+				</div>
+				<ul class="book-list">
+					<li class="clearfix" v-for="item in commend">
+						<a href="/book?id={{item.fiction_id}}">	
+							<div class="book-cover">
+								<img v-bind:src="item.cover"/>
+							</div>
+							<div class="book-describtion">
+								<h3 class="book-name">{{item.title}}</h3>
+								<span class="author">{{item.authors}}</span>
+								<p class="book-summary">{{item.summary}}</p>
+								<ul class="book-tags" >
+									<li class="book-tag" v-for="tag in item.tags" v-if="$index<4">{{tag}}</li>
+								</ul>					
+							</div>
+						</a>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<div class="common-box">
+					<p class="common-title">新书入库</p>
+				</div>
+				<ul class="book-list">
+					<li class="clearfix" v-for="item in focus">
+						<a href="/book?id={{item.fiction_id}}">	
+							<div class="book-cover">
+								<img v-bind:src="item.cover"/>
+							</div>
+							<div class="book-describtion">
+								<h3 class="book-name">{{item.title}}</h3>
+								<span class="author">{{item.authors}}</span>
+								<p class="book-summary">{{item.summary}}</p>
+								<ul class="book-tags" >
+									<li class="book-tag" v-for="tag in item.tags" v-if="$index<4">{{tag}}</li>
+								</ul>					
+							</div>
+						</a>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<div class="common-box">
+					<p class="common-title">完结好书</p>
+				</div>
+				<ul class="book-list">
+					<li class="clearfix" v-for="item in focus">
+						<a href="/book?id={{item.fiction_id}}">	
+							<div class="book-cover">
+								<img v-bind:src="item.cover"/>
+							</div>
+							<div class="book-describtion">
+								<h3 class="book-name">{{item.title}}</h3>
+								<span class="author">{{item.authors}}</span>
+								<p class="book-summary">{{item.summary}}</p>
+								<ul class="book-tags">
+									<li class="book-tag"  v-for="tag in item.tags" v-if="$index<4">{{tag}}</li>
+								</ul>					
+							</div>
+						</a>
+					</li>
+				</ul>
+			</section>
+		</div>
+		<script src="/static/vue.js"></script>
+		<script src="/static/zepto.js"></script>
+		<script src="/static/script/pages/sex.js"></script>
+	</body>
+</html>

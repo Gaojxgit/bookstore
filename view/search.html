@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<link href="../static/css/reset.css" rel="stylesheet" />
+		<title></title>
+		<style>
+			.clearfix:before,
+			.clearfix:after{
+				content:'';
+				display: table;
+			}
+			.clearfix:after{
+				clear: both;
+			}
+			.common-header{
+				width:100%;
+				background:#ddd;
+				font:15px/45px a;
+				color:#666
+			}
+			.back-fowrd{
+				float: left;
+				width:44px;
+				height:44px;
+				background: url(../static/img/back.png) no-repeat center;
+				background-size: 12px;
+			}
+			.home{
+				float:right;
+				width:44px;
+				height:44px;
+				background:url(http://image.read.duokan.com/mfsv2/download/fdsc3/p01eZH42sBV7/QTS90E2ZVritaa.png) no-repeat center;
+				background-size: 16px;
+			}
+			.search_contain{
+				position: relative;
+				width: 100%;
+				height: 40px;
+				background:#efeff0
+			}
+			.back_icon{
+				float: left;
+				width: 10%;
+				height: 40px;
+				background:url(../static/img/back.png) no-repeat center;
+				background-size: 10px;
+			}
+			.search_box{
+				float: left;
+				position: relative;
+				top: 50%;
+				margin-top: -16px;
+				width: 80%;
+				background: #fff;
+				border: 1px solid #ddd;
+			}
+			.icon{
+				background: url(http://image.read.duokan.com/mfsv2/download/s010/p01TjruXIhgt/PP13pEqhpChuay.png) no-repeat center;
+				background-size: 14px;
+				width: 30px;
+				height: 30px;
+				display: inline-block;
+				vertical-align: middle;
+			}
+			.search_input{
+				height: 30px;
+				padding: 0px;
+				line-height: 34px;
+				padding-left: 10px;
+				outline: none;
+				border: none;
+				border-left: 1px solid #ddd;
+				vertical-align:middle;
+			}
+			.search_btn{
+				vertical-align: middle;
+				padding: 0px 6px;
+				line-height: 35px;
+				height: 30px;
+				border: none;
+				float: right;
+				background: #fff;
+				border-left: 1px solid #ddd;
+				outline: none;
+			}
+			.recent_hot{
+				padding: 10px;
+			}
+			.recent-item{
+				display: inline-block;
+				padding: 0px 10px;
+				font:14px/24px a;
+				border: 1px solid #eee;
+				margin-bottom: 6px;
+			}
+			.recent-item+.recent-item{
+				margin-left: 10px;
+			}
+			.recent-item:nth-child(3n){
+				background: #fbebe8;
+			}
+			.recent-item:nth-child(3n+1){
+				background: #fcedda;
+			}
+			.recent-item:nth-child(3n+2){
+				background: #e8f9db;
+			}
+			.book_container{
+				width: 100%;
+				height: calc(100% - 8rem);
+				overflow: hidden;
+				position: relative;
+			}
+			.book_box{
+				position: absolute;
+				top:0px;
+				bottom:0px;
+				left:0px;
+				right: 0px;
+				overflow-y:scroll;
+			}
+			.search_item{
+				padding: 10px 10px 15px 10px;
+				border-bottom: 1px solid #eee;
+			}
+			.book_img{
+				width: 25%;
+				float: left;
+				box-shadow: 1px 1px 4px 0px #888;
+			}
+			.book_img>img{
+				width: 100%;
+				vertical-align: middle;
+			}
+			.book_des{
+				width: 75%;
+				margin-left: 25%;
+				padding-left: 10px;
+			}
+			.book_des>h3{
+				font:14px/30px a;
+				font-weight: 500;
+				color: #333;
+			}
+			.book_des>p{
+				font:12px/20px a;
+				color: #666;
+				display: -webkit-box;
+				-webkit-line-clamp: 3;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				-webkit-box-orient: vertical;
+			}
+			.fail-tip{
+				font: 16px/30px a;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app" style="height: 100%;"> 
+			<% include include/common-header.html%>		
+			<div class="search_contain">
+				<div class="back_icon">
+					<a href="javascript:history.back()"></a>
+					
+				</div>
+				<div class="search_box">
+					<span class="icon"></span>
+					<input class="search_input" type="text" value="" placeholder="输入书名/作者/关键字" />
+					<button class="search_btn" v-on:click="dosearch">搜索</button>
+				</div>
+			</div>
+			
+			<div class="book_container">
+				<div class="book_box">
+					<div class="recent_hot" v-show="condition">
+						<ul>
+							<li class="recent-item">我的绝美女神老婆</li>
+							<li class="recent-item">复仇千金</li>
+							<li class="recent-item">盗墓</li>
+							<li class="recent-item">豪门小老婆</li>
+							<li class="recent-item">庶女</li>
+							<li class="recent-item">神医</li>
+							<li class="recent-item">魔兽</li>
+							<li class="recent-item">我的老婆是双胞胎</li>
+						</ul>
+					</div>
+					<ul class="book_list">
+						<li class="search_item clearfix" v-for="item in search" v-if="$index<10">
+							<div class="book_infor">
+								<div class="book_img">
+									<img v-bind:src="item.cover"/>
+								</div>
+								<div class="book_des">
+									<h3>{{item.title}}</h3>
+									<p>{{item.intro}}</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<div class="search_fail" v-show="empty">
+						<div class="search_fail_empty">
+							<p class="fail-tip">没有相应的搜索结果</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		<script src="../static/zepto.js"></script>
+		<script src="../static/vue.js"></script>
+		<script src="../static/script/pages/search.js"></script>
+	</body>
+</html>

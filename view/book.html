@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<link href="/static/css/reset.css" rel="stylesheet" />
+		<title></title>
+		<style>
+			.clearfix:before,
+			.clearfix:after{
+				content:'';
+				display: table;
+			}
+			.clearfix:after{
+				clear: both;
+			}
+			.common-header{
+				width:100%;
+				background:#ddd;
+				font:15px/45px a;
+				color:#666
+			}
+			.back-fowrd{
+				float: left;
+				width:44px;
+				height:44px;
+				background: url(../static/img/back.png) no-repeat center;
+				background-size: 12px;
+			}
+			.home{
+				float:right;
+				width:44px;
+				height:44px;
+				background:url(http://image.read.duokan.com/mfsv2/download/fdsc3/p01eZH42sBV7/QTS90E2ZVritaa.png) no-repeat center;
+				background-size: 16px;
+			}
+			.book-cover{
+				width:30%;
+				float: left;
+			}
+			.book-cover img{
+				width:100%;
+			}
+			.main-card{
+				padding: 10px 10px 0px 10px;
+				border-bottom: 10px solid #eee;
+			}
+			.main-card:last-child{
+				padding: 10px 10px 10px 10px;
+				border-bottom: none;
+			}
+			.book-des{
+				margin-left:40%;
+			}
+			.book-name{
+				font-size: 1.6rem;
+				font-weight: 600;
+				color: #333;
+			}
+			.book-author{
+				color: #4b99a7;
+				display: block;
+			}
+			.book-state{
+				color:#63bd6e;
+				border:1px solid #63bd6e;
+				border-radius: 3px;
+				font: 12px/14px a;
+			}
+			.start-read{
+				margin-top: 10px;
+				margin-bottom: 10px;
+				clear: both;
+				width: 100%;
+				background: #f35d02;
+				text-align: center;
+				font:16px/30px a;
+				line-height: 30px;
+				border-radius: 4px;
+				color: #f0f0f0;
+			}
+			.start-read p{
+				color: #f0f0f0;
+			}
+			.book-summary p{
+				padding: 0px 4px 6px 4px;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 5;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
+				border-bottom: 1px solid #eee;
+			}
+			.book-new{
+				line-height: 40px;
+				font:14px/40px a;
+				font-weight: 600px;
+				padding-left: 10px;
+				text-align: center;
+			}
+			.common-title{
+				padding: 0px 0px 6px 0px;
+				font:14px/16px a;
+				font-weight:600;
+			}
+			.book-tags .tag{
+				display: inline-block;
+				padding:1px 14px;
+				background: #fbebe8;
+				border-radius: 4px;
+				margin-bottom: 10px;
+				font-size:12px ;
+				border: 1px solid #eee;
+			}
+			.book-tags .tag + .tag{
+				margin-left: 4px;
+			}
+			.other-book{
+				width: 33.3%;
+				display: inline-block;
+				font-size: 14px;
+				vertical-align: top;
+			}
+			.other-book img{
+				width: 90%;
+				display: block;
+			}
+			.other-book-list{
+				font-size: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app"> 
+				<header class="common-header">
+				<nav>
+					<a class="back-fowrd" href="/"></a>
+					<span class="common-content"><%=nav%></span>
+					<a class="home" href="/"></a>
+				</nav>
+			</header>
+			<div class="container">
+				<section class="main-card clearfix">
+					<div class="book-cover">
+						<img src="http://cover.read.duokan.com/mfsv2/download/fdsc3/p01TQfpyV6px/06EirDzmjj8zuK.jpg" />
+					</div>
+					<div class="book-des">
+						<h4 class="book-name">{{item.title}}</h4>
+						<span class="book-author">{{item.authors}}</span>
+						<span class="comment">{{item.score_count}}个评价</span>
+						<p class="book-price">价格 ： {{item.price}}书币 / 千字</p>
+						<p class="book-word">字数：{{item.word_count}}字</p>
+						<span class="book-state" v-if="item.finish">已完结</span>
+						<span class="book-state" v-else>连载中</span>
+					</div>
+					<div class="start-read">
+						<div class="read-tip">
+							<a href="/read?id={{item.fiction_id}}"><p>开始阅读</p></a>
+						</div>
+					</div>
+					<div class="book-summary">
+						<div >
+							<p>{{item.content}}</p>
+						</div>
+					</div>
+					<div class="book-new">
+						<p>最新更新</p>
+					</div>
+				</section>
+				<section class="main-card">
+					<div class="tags">
+						<p class="common-title">类别标签</p>
+						<ul class="book-tags" >
+							<li class="tag" v-for="tag in item.tags">{{tag}}</li>
+						</ul>
+					</div>
+				</section>
+				<section class="main-card">
+					<div class="other-books">
+						<p class="common-title">作者其他作品</p>
+						<ul class="other-book-list">
+							<li class="other-book" v-for="book in related">
+								<a href="/book?id={{book.fiction_id}}">
+									<img v-bind:src="book.cover"/>
+									<p class="other-book-name">{{book.title}}</p>
+								</a>
+									
+								
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="main-card">
+					<div class="other-books">
+						<p class="common-title">喜欢这本书的人也喜欢</p>
+						<ul class="other-book-list">
+							<li class="other-book">
+								<a>
+									<img src="http://cover.read.duokan.com/mfsv2/download/fdsc3/p01QivZjexs1/9FS6XpwmPq9ZxF.jpg"/>
+									<p class="other-book-name">食咒</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="main-card">
+					<div class="book-infor">
+						<p class="common-title">图书信息</p>
+						<span>版权 ： 阅文集团旗下起点中文网</span>
+					</div>
+				</section>
+			</div>
+		</div>
+		
+		<script src="/static/zepto.js"></script>
+		<script src="/static/vue.js"></script>
+		<script src="/static/script/pages/book.js"></script>
+	</body>
+</html>

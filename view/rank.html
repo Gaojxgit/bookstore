@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<link href="../static/css/reset.css" rel="stylesheet" />
+		<title></title>
+		<style type="text/css">
+				.clearfix:before,
+			.clearfix:after{
+				content:'';
+				display: table;
+			}
+			.clearfix:after{
+				clear: both;
+			}
+			.common-header{
+				width:100%;
+				background:#ddd;
+				font:15px/45px a;
+				color:#666
+			}
+			.back-fowrd{
+				float: left;
+				width:44px;
+				height:44px;
+				background: url(../static/img/back.png) no-repeat center;
+				background-size: 12px;
+			}
+			.home{
+				float:right;
+				width:44px;
+				height:44px;
+				background:url(http://image.read.duokan.com/mfsv2/download/fdsc3/p01eZH42sBV7/QTS90E2ZVritaa.png) no-repeat center;
+				background-size: 16px;
+			}
+			.rank_list{
+				padding: 1rem 1rem 8px 1rem;
+				border-bottom: 1px solid #eee;
+			}
+			.item_img{
+				width:9rem;
+				height: 9rem;
+				float: left;
+				display: table;
+			}
+			.item_img>img{
+				display: table-cell;
+				vertical-align: middle;
+				width: 100%;
+			}
+			.item_des{
+				float: left;
+				padding-top: 10px;
+				padding-left: 2rem;
+				width:calc(100% - 12rem)
+			}
+			.item_des>p{
+				font: 14px/26px a;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<% include include/common-header.html %>
+			<section>
+				<ul class="rank_contain">
+					<li class="rank_list clearfix" v-for="item in data" v-if="$index<6">
+						<div class="item_img">
+							<img v-bind:src="item.cover" />
+						</div>
+						<div class="item_des">
+							<p  v-for="book in item.booklist"><span>{{$index+1}} </span>{{book}}</p>
+						</div>
+					</li>
+				</ul>
+			</section>			
+		</div>
+		<script src="/static/vue.js"></script>
+		<script src="/static/zepto.js"></script>
+		<script src="/static/script/pages/rank.js"></script>
+	</body>
+</html>

@@ -1,0 +1,19 @@
+<section class="index_free classify">
+	<div class="index_header tag_style">
+		<p class="index_header_word">限时免费</p>
+	</div>
+	<ul class="free_book_limited" >
+		<li class="free_book" v-for="item in free">
+			<a href="/book?{{item.data.fiction_id}}">
+				<img v-bind:src="item.data.book_cover" />
+			</a>
+			<div class="free_infor"></div>
+		</li>
+		
+	</ul>
+	<div class="more_information more_free_information">
+			<a href="">
+				<div class="female_chanele">更多限免  >></div>
+			</a>
+	</div>
+</section>

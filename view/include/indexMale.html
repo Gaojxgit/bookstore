@@ -1,0 +1,34 @@
+<section class="index_male classify">
+	<div class="index_header">
+		<p class="index_header_word">男生最爱</p>
+	</div>
+	<div class="index_content">
+		<ul class="index_content_box">
+			<li class="clearfix content_box_list" v-for="item in male" v-if="$index<6">
+				<a href="/book?id={{item.fiction_id}}">
+					<div class="book_cover"  >
+						<img v-bind:src="item.cover" />
+						<p class="book_state" v-if="item.finish">完结</p>
+						<p class="book_state" v-else>未完结</p>
+					</div>
+					<div class="index_content_about">
+						<h4 class="book_title">{{item.title}}</h4>
+						<span class="book_author">{{item.autors}}</span>
+						<p class="book_content">{{item.summary}}</p>
+						<ul class="content_tag_box">
+							<li class="book_tag" v-for="tag in item.tags">{{tag}}</li>
+						</ul>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<div class="more_information">
+			<a href="javascript:">
+				<div class="change">换一换</div>
+			</a>
+			<a href="javascript:">
+				<div class="female_chanele">男生频道  >></div>
+			</a>
+		</div>
+	</div>
+</section>

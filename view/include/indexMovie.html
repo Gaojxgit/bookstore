@@ -1,0 +1,35 @@
+<section class="index_top" >
+	<a class="search_button" href="/search">
+		<div class="search_word">输入 / 作者 / 关键字</div>
+	</a>
+</section>
+<section class="movie_item movie_recent_hot">
+	<div class="movie_slidebar">
+		<p class="movie_title">最近上映</p>
+	</div>
+	<ul class="movie_list_items">
+		<li class="movie_total_mes clearfix" v-for="item in movieData.movieData" v-if="$index<6">
+			<a href="/movie?id={{item.id}}">
+				<div class="movie_cover">
+					<img v-bind:src="item.images.large" />
+					<div class="movie_rating">{{item.rating.average}}</div>
+				</div>
+			</a>
+			<div class="movie_infor">
+				<h3 class="movie_name"><span class="category">电影名：</span>{{item.title}}</h3>
+				<em class="movie_director"><span class="category">导演：</span><a class="movie_cast_item">{{item.directors[0].name}}</a></em>
+				<p class="movie_time"><span class="category">上映时间：</span>{{item.year}}</p>
+				<div class="movie_casts tags">
+					<span class="category">主演 ： </span>
+					<a class="movie_cast_item" v-for="cast in item.casts">{{cast.name}}</a>
+					
+				</div>
+				<div class="movie_tags tags">
+					<span class="category">类型 ： </span>
+					<a class="movie_tag_item" v-for="tag in item.genres">{{tag}}</a>
+				</div>
+				<div class="movie_wanted"><span class="category">想看人数 ：</span>{{item.collect_count}}</div>
+			</div>
+		</li>
+	</ul>
+</section>
