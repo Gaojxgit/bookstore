@@ -7,6 +7,6 @@ git clone https://github.com/Gaojxgit/bookstore.git
 cd bookstore
 npm install
 node app.js
-```sh
+```
 ### 使用8000端口，查看效果
 
